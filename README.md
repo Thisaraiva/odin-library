@@ -18,7 +18,8 @@ function Book() {
 
 function addBookToLibrary() {
   // take params, create a book then store it in the array
-} ```
+}
+```
 
 ## Exibição dos Livros
 
