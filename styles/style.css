@@ -253,13 +253,6 @@ dialog, .form {
 }
 
 /* Estilos para os botões dos cards */
-.card-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.5rem;
-    margin-top: 1rem;
-}
-
 .card-actions button {
     background: none;
     border: none;
@@ -276,11 +269,6 @@ dialog, .form {
 
 .card-actions button:hover {
     background-color: rgba(0, 0, 0, 0.1);
-}
-
-.card-actions i {
-    font-size: 1.2rem;
-    color: var(--text-light);
 }
 
 .card-actions button:hover i {
@@ -349,18 +337,16 @@ dialog, .form {
 .card-actions {
     display: flex;
     justify-content: flex-end;
-    font-size: 1.3rem;
-    gap: 1rem;
+    font-size: 1.3rem;    
+    gap: 0.5rem;
+    margin-top: 1rem;
 }
 
 .card-actions i {
     color: var(--text-light);
     cursor: pointer;
     transition: color 0.2s;
-}
-
-.card-actions i:hover {
-    color: var(--primary-color);
+    font-size: 1.2rem;    
 }
 
 .card p {

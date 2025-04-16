@@ -111,7 +111,7 @@ form.addEventListener("submit", (event) => {
 addBookToLibrary("O Senhor dos Anéis", "J.R.R. Tolkien", "1200", "true");
 addBookToLibrary("Harry Potter e a Pedra Filosofal", "J.K. Rowling", "300", "false");
 addBookToLibrary("1984", "George Orwell", "328", "true");
-addBookToLibrary("Hitler: Biografia comentada", "Hamud C. Hamud", "1150", "Sim");
+addBookToLibrary("Hitler: Biografia comentada", "Hamud C. Hamud", "1150", "false");
 
 // Exibe os livros iniciais
 displayBooks();
