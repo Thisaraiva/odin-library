@@ -39,7 +39,7 @@ function displayBooks() {
             <button class="btn-remove-book" data-id="${book.id}">
                 <i class="mdi mdi-delete"></i>
             </button>
-            </div>
+        </div>
         `;
 
         bookCards.appendChild(card);
@@ -97,7 +97,7 @@ form.addEventListener("submit", (event) => {
     const pages = document.querySelector("#pages").value;
     const read = document.querySelector("#read").value;
 
-    if(read === "default") {
+    if (read === "default") {
         alert("Please select a read status");
         return
     }
