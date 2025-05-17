@@ -207,7 +207,9 @@ const readError = document.querySelector("#read + span.error");
 // Função genérica para validar campos
 function validateField(input, errorElement) {
     const isReadField = input === read;
-    const isValid = input.validity.valid && (!isReadField || input.value !== "default");
+    const isRequired = input.hasAttribute('required');
+    const isEmpty = input.value.trim() === '';
+    const isValid = (!isRequired || !isEmpty) && input.validity.valid && (!isReadField || input.value !== "default");
 
     if (isValid) {
         errorElement.textContent = "";
@@ -219,13 +221,14 @@ function validateField(input, errorElement) {
         showErrorMessage(input, errorElement);
         input.classList.add("invalid");
         input.classList.remove("valid");
-
     }
+
+    return isValid;
 }
 
 // Função genérica para exibir mensagens de erro
 function showErrorMessage(input, errorElement) {
-    if (input.validity.valueMissing) {
+    if (input.validity.valueMissing || (input.value.trim() === '' && input.hasAttribute('required'))) {
         errorElement.textContent = "This field is required.";
     } else if (input.validity.tooShort) {
         errorElement.textContent = `Should be at least ${input.minLength} characters.`;
@@ -248,6 +251,7 @@ newBookBtn.addEventListener("click", () => {
     form.reset();
     [title, author, pages, read].forEach(input => {
         const errorElement = document.querySelector(`#${input.id} + span.error`);
+        console.log(`Input.id = ${input.id}`);
         errorElement.textContent = "";
         errorElement.className = "error";
         input.classList.remove("valid", "invalid");
@@ -266,19 +270,19 @@ cancelButton.addEventListener("click", () => {
 form.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    let isValid = true;
+    let isFormValid = true;
 
     // Valida todos os campos
     [title, author, pages, read].forEach(input => {
         const errorElement = document.querySelector(`#${input.id} + span.error`);
-        validateField(input, errorElement);
-        if (!input.validity.valid || (input === read && input.value === "default")) {
-            isValid = false;
+        const isValid = validateField(input, errorElement);
+        if (!isValid) {
+            isFormValid = false;
         }
     });
 
     // Se todos os campos forem válidos, adiciona o livro
-    if (isValid) {
+    if (isFormValid) {
         const titleValue = title.value;
         const authorValue = author.value;
         const pagesValue = pages.value;
